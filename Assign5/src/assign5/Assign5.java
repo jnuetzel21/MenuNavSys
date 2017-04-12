@@ -34,7 +34,7 @@ public class Assign5 extends Application {
       
         String name = "";
         String descrip =""; //will be readin from file
-        double price = 0.0; //price is not working :( 
+        double price = 0.0;  
         String image =""; 
        
         
@@ -66,23 +66,25 @@ public class Assign5 extends Application {
                            caseNum =4;
                        
                         switch (caseNum){
-                            case 1: 
+                            case 1: //name
                              name = nextLine; //should get the entirty of next line 
                              System.out.println("Name:" + name);
                              break;
                             
-                            case 2:
+                            case 2: //description
                              descrip = nextLine;
                              System.out.println("Description: " + descrip);
                              break;
                             
-                            case 3:
+                            case 3: //price
                               //String sprice = nextLine; //this may need a cast  
                               price = Double.parseDouble(nextLine.substring(7));
-                              System.out.println(/*"Price: " + */ price); //may need a cast 
+                              //need to add new price to dish object
+                              
+                              //System.out.println("Price: $" + price); //may need a cast 
                               break;
                               
-                            case 4: 
+                            case 4: //image
                               // String imageName = nextLine.substring(7);
                               //System.out.println( "Image file name: "+ imageName);
                               //URL url = getClass().getResource;
@@ -91,7 +93,7 @@ public class Assign5 extends Application {
                               break;
                             
                             default: 
-                                System.out.println("Error or end of file");
+                                System.out.println("Error");
                                 break;                              
                             
                         }//end switch                                      
@@ -99,7 +101,12 @@ public class Assign5 extends Application {
               
                 dish newDish = new dish (name, descrip, price, image); 
                 dishList.add(newDish);
-               // System.out.println("DISH price" + dish.price); // remove later
+                
+                
+               // System.out.println("DISH price: " + dishList.get(currState).price); // remove later
+               // System.out.println("Dish name" + dishList.get(currState).name);
+               // System.out.println("Dish description "+ dishList.get(currState).descrip);
+                
             }//end while
          }//end try
          
@@ -107,15 +114,17 @@ public class Assign5 extends Application {
              System.out.println("Error" + e);
          }
          
-            System.out.println( "HERE");
+            //System.out.println( "HERE");
             
              //labels
             nameLbl= new Label(dishList.get(currState).name);
             System.out.println( "name label: " + nameLbl);
             desLbl= new Label(dishList.get(currState).descrip);
             System.out.println( "desLbl label: " + desLbl);
+            
+            System.out.println( "price before label: " + dishList.get(currState).price);
             priceLbl= new Label("Price " + dishList.get(currState).price);
-            System.out.println( "price label: " + priceLbl);
+            System.out.println( "price label: $" + priceLbl);
             imgLbl= new ImageView(dishList.get(currState).image);
             
             System.out.println( "image label: " + imgLbl);
@@ -126,8 +135,9 @@ public class Assign5 extends Application {
             
             
             //fORMATING
-           desLbl.setWrapText(true);
-           desLbl.setMaxWidth(400);
+           
+           
+           desLbl.setMaxWidth(300);
            imgLbl.setFitHeight(300);
            imgLbl.setFitWidth(300);
             
@@ -135,26 +145,26 @@ public class Assign5 extends Application {
            
            //grid panes
            GridPane gp = new GridPane();
-           gp.setHgap(15);
-           gp.setVgap(15);
+           gp.setHgap(20);
+           gp.setVgap(20);
            gp.add(nameLbl, 2,1,1,1); 
            gp.add(imgLbl,2,2,1,1); 
            gp.add(desLbl,2,3,2,1);
            gp.add(priceLbl,2,4,2,1);
           
-            System.out.println( "HERE 4");
+            //System.out.println( "HERE 4");
             //buttons 
             //previous
             Button prevBtn = new Button();
-            gp.add (prevBtn, 1,5,1,1);
+            gp.add (prevBtn, 1,4,1,2);
             prevBtn.setText(" < Prev");
-             System.out.println( "HERE 5");
+           //  System.out.println( "HERE 5");
             //next
             Button nxtBtn = new Button();
-            gp.add(nxtBtn, 3,5,1,1);
+            gp.add(nxtBtn, 3,4,1,2);
             nxtBtn.setText("Next >");
             
-             System.out.println( "HERE 6");
+            // System.out.println( "HERE 6");
             
             //prevBtn.setOnAction( new EventHandler<ActionEvent>()){
           prevBtn.setOnAction(new EventHandler<ActionEvent>() {  
@@ -163,34 +173,32 @@ public class Assign5 extends Application {
               @Override
                 // System.out.println( "HERE 7");
                   public void handle( ActionEvent event){
-                         System.out.println( "HERE 8");
+                        // System.out.println( "HERE 8");
                       if (currState != 0){
                         currState = currState -1;
-                         System.out.println( "HERE 9");
+                         //System.out.println( "HERE 9");
                          
                      //CLEAR grid pane    
                    gp.getChildren().remove(nameLbl);
                    gp.getChildren().remove(desLbl);
                    gp.getChildren().remove(imgLbl);
                    gp.getChildren().remove(priceLbl);
-                    //gp.getChildren().clear(); //removes the buttons
+                    //gp.getChildren().clear(); //removes everything
                    
                     //not sure if this is going to work
                    ///  gp.add(nxtBtn, 3,5,1,1);
                    // nxtBtn.setText("Next >");
-                      //labels
+                   
+                      //adds labels back
                       nameLbl= new Label(dishList.get(currState).name);
                       imgLbl= new ImageView(dishList.get(currState).image);
                       desLbl= new Label(dishList.get(currState).descrip);
-                      priceLbl= new Label("Price " + dishList.get(currState).price);
-                     System.out.println( "HERE 10");
-                     //grid pane 
-                     //GridPane gp = GridPane();
-                     // gp.setHgap(15);
-                      //gp.setVgap(15);
+                      priceLbl= new Label("Price: $ " + dishList.get(currState).price);
+                     //System.out.println( "HERE 10");
+                     
                       
-                      desLbl.setWrapText(true);
-                      desLbl.setMaxWidth(400);
+                     
+                      desLbl.setMaxWidth(300);
                       imgLbl.setFitHeight(300);
                       imgLbl.setFitWidth(300);
                       //gridpanes
@@ -206,7 +214,7 @@ public class Assign5 extends Application {
                    //System.out.println( "HERE 13");
     });//end setAction prev
             
-           System.out.println( "HERE 14 ");
+          // System.out.println( "HERE 14 ");
           
          //nxtBtn.setOnAction(new EventHandler<ActionEvent>()){
     nxtBtn.setOnAction(new EventHandler<ActionEvent>() {   
@@ -215,26 +223,26 @@ public class Assign5 extends Application {
              if (currState != dishList.size() -1){
                   currState = currState+ 1;
                         
-                     //CLEAR grid pane    
-                  gp.getChildren().remove(nameLbl);
+                      //CLEAR grid pane    
+                   gp.getChildren().remove(nameLbl);
                    gp.getChildren().remove(desLbl);
                    gp.getChildren().remove(imgLbl);
                    gp.getChildren().remove(priceLbl);
                   // gp.getChildren().clear();
                    
-                    //labels
+                    // re-add labels
                     nameLbl= new Label(dishList.get(currState).name);
                     imgLbl= new ImageView(dishList.get(currState).image);
                     desLbl= new Label(dishList.get(currState).descrip);
-                    priceLbl= new Label("Price: " + dishList.get(currState).price);
+                    priceLbl= new Label("Price: $" + dishList.get(currState).price);
             
                     //grid pane 
                  //GridPane gp = GridPane();
                 // gp.setHgap(15);
                 // gp.setVgap(15);
                 //formatting
-                desLbl.setWrapText(true);
-                desLbl.setMaxWidth(400);
+                
+                desLbl.setMaxWidth(300);
                 imgLbl.setFitHeight(300);
                 imgLbl.setFitWidth(300);
                 

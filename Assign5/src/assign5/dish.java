@@ -13,7 +13,7 @@ public class dish {
     public dish (String name, String descrip, double price, String image){
         this.name = name;
         this.descrip = descrip;
-        this.descrip = descrip;
+        this.price = price;// lol i forgot this and it didnt work 
         this.image = image;  
     }//end public dish 
     

@@ -10,3 +10,7 @@ Name: Chocolate Frogs
 Description: Chocolate Frogs
 Price: 7.00
 Image: chocolateFrog.jpg
+Name: Every Flavour Beans
+Description: Sweet or sour jelly beans.
+Price: 4.50
+Image: beans.jpg
