@@ -1,0 +1,12 @@
+Name: Ribeye Steak
+Description: 20-oz steak
+Price: 29.99
+Image: steak.jpg
+Name: Butter Beer
+Description: Butter Beer
+Price: 5.00
+Image: butterbeer3.jpg
+Name: Chocolate Frogs
+Description: Chocolate Frogs
+Price: 7.00
+Image: chocolateFrog.jpg
